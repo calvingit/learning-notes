@@ -4,6 +4,10 @@
 - 教材：[《C语言程序设计-现代方法》第二版](https://book.douban.com/subject/4279678/)
 - C语言版本: C99
 
+其他参考资料：
+
+- [C语言中文网](http://c.biancheng.net/)
+
 ### 1. 格式化整数"%d"和 "%i" 的区别
 
 - 对于`printf`来说没有区别
