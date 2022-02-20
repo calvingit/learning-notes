@@ -5,10 +5,9 @@
 - C语言版本: C99
 
 其他参考资料：
-
 - [C语言中文网](http://c.biancheng.net/)
 
-### 1. 格式化整数"%d"和 "%i" 的区别
+## 1. 格式化整数"%d"和 "%i" 的区别
 
 - 对于`printf`来说没有区别
 - 对于`scanf` 有区别："%d"只能用于接收10进制数字输入，"%i"可以接收10进制、8进制、16进制输入
@@ -29,7 +28,7 @@ Enter two integers: a b c
 Your integers: 12, 8, 255
 ```
 
-### 2. `scanf`输入格式不正确时会跳过匹配
+## 2. `scanf`输入格式不正确时会跳过匹配
 
 scanf匹配出错时，会把剩余的内容返回给缓冲区，留给下一次`scanf`匹配。
 
@@ -51,7 +50,7 @@ void testScanf2(void)
 3 0.141593 abcd
 ```
 
-### 3.  C99 有 bool 类型
+## 3.  C99 有 bool 类型
 C89 没有定义 bool 类型，只能用 int代替，比如厂家的宏定义：
 
 ```c
@@ -74,7 +73,7 @@ C99 定义了 `_Bool`基本类型， 本质上还是unsigned int。C99增加了�
 
 `_Bool`类型只接受0或1，赋值非0的整数都会变成1，当然print也只会是0和1
 
-### 4. 类型定义typedef 代替 #define
+## 4. 类型定义typedef 代替 #define
 
 typedef 在可读性和可移植性上会更好，重命名类型时尽量用typedef。
 
@@ -99,7 +98,7 @@ PTR_TO_INT p, q, r;
 宏替换之后变成`int * p, q, r;`，其中只有p是指针，q和r是整型。typedef 不会有这样的问题
 
 
-### 5. sizeof 运算符
+## 5. sizeof 运算符
 
 `sizeof` 返回类型是 `size_t`，在 C89 中是`unsigned long`，在C99中 可以更长。
 
@@ -110,7 +109,7 @@ printf("%lu\n", (unsigned long)sizeof(int));
 printf("%zu\n", sizeof(int)); // C99才可以
 ```
 
-### 6. 数组初始化可以指定下标
+## 6. 数组初始化可以指定下标
 
 C89的数组初始化一般是下面几种:
 ```c
@@ -138,7 +137,7 @@ int a[] = {[5] = 9, [23] = 89, [10] = 78}
 double ident[2][3] = {[1][1] = 2.0, [0][2] = 5.0 }
 ```
 
-### 7. C99 的 变长数组
+## 7. C99 的 变长数组
 
 C89的数组变量的长度必需是常量表达式，需要指定长度，或者添加初始化表达式。
 ```c
@@ -157,7 +156,7 @@ int dd[n * 12];
 int dd[n * 2] = {0}; // error: variable-sized object may not be initialized
 ```
 
-### 8. 数组作为函数参数
+## 8. 数组作为函数参数
 
 一般情况下，数组不会单独作为参数，会有长度参数：
 ```c
@@ -233,7 +232,7 @@ total = sum_array((int []){3, 0, 3, 4, 1},5);
 也可以部分初始化`sum_array((int []){3},5);`，第一个初始化为3，其他为0。
 当然，复合字面量的元素也可以在函数内部被改变，如要要只读，加上`const`，如`(const int[]){4,5}`。
 
-### 9. main函数
+## 9. main函数
 
 早期的main函数常常省略返回类型，这是利用了函数返回类型默认为 int 类型的传统，甚至连参数有时都会省略:
 
@@ -263,7 +262,7 @@ exit(EXIT_SUCCESS); // #define	EXIT_FAILURE	1
 ```
 `return` 只能在main里面用，`exit` 可以在任何地方调用。
 
-### 10. 数组与指针
+## 10. 数组与指针
 
 - 对于任意一维数组a来说，`a[i]` 等价于` *(a+i)`
 
@@ -302,7 +301,7 @@ for (p = &a[0]; p < &a[3]; p++)
 }
 ```
 
-### 11. 判断字符串结束符'\0'
+## 11. 判断字符串结束符'\0'
 
 判断字符串结束的标志是最后一个字符是否为等于 '\0'。在ASCii码表里面，第一个字符就是空字符。所以，`*s != '\0'`就等于`*s != 0`，也等于`*s`
 
@@ -336,7 +335,7 @@ size_t strlen(const char *s)
 }
 ```
 
-### 12. 运算符优先级
+## 12. 运算符优先级
 
 没有必要死记硬背所有的优先级，但是要注意最顶级的两类运算符：
 - 优先级1的运算符，结合方向是从左到右
@@ -374,7 +373,7 @@ size_t strlen(const char *s)
 | == 和 != 高于位操作   | (val & mask != 0)   | (Val & mask) != 0                            | Val & (mask != 0)                                  |
 | == 和 != 高于赋值操作 | c= getchar() != EOF | (c = getchar()) != EOF                       | c = (getchar() != EOF)                             |
 
-### 13. 指针与自增运算*p++
+## 13. 指针与自增运算*p++
 
 ++和*都是同一优先级，但是结合性是从右往左。
 
@@ -413,7 +412,7 @@ char *strcat(char *s1, const char *s2)
 
 多加了一对圆括号是为了消除gcc 的 `Wparentheses`警告，gcc编辑器在-Wall选项下，会明确用户在判断语句中使用"="的真正意图。当你想在判断语句中使用"="时，要加上括号：`if((a = b) !=0)`。
 
-### 14.  struct 结构体
+## 14.  struct 结构体
 
 c89的struct初始化需要按照字段声明顺序进行初始化，但C99可以指定每个字段进行初始化，并且不限制顺序，类似数组的初始化，比如：
 
@@ -502,7 +501,7 @@ printf("%d, %s, %s\n", s2.age, s2.name, s2.parents);
 
 
 
-### 15. union 联合
+## 15. union 联合
 
 编译器只为union中最大的成员分配足够的内存空间，初始化的时候只能初始化一个成员。
 
@@ -604,7 +603,7 @@ printf("%f\n", u.f.f);
 ```
 浮点类型存储方式和整型不一样，所以不受影响。
 
-### 16. enum 枚举
+## 16. enum 枚举
 
 很多C开发者喜欢用宏来定义各种常量，这可以增加代码的可读性，但是如果有多个具有相同类型(特别是整型)的值，定义成enum会更好。尤其是在调试的时候，宏定义被替换成具体的值，擦除了类型。
 
@@ -649,7 +648,7 @@ const char *daily_specials[] = {￼
 };
 ```
 
-### 17. 左值和右值
+## 17. 左值和右值
 
 值是表达式，到底是左还是右，是相对赋值运算符来说的：左值 = 右值。
 
@@ -668,4 +667,135 @@ const char *daily_specials[] = {￼
 
 > 赋值运算左边的操作数，以及任何自增或自减运算符（++ 和 --）的操作数，不仅应该是左值，还应该是可修改的左值。可修改的左值，其类型不可以被声明为限定符 const，并且可修改的左值不能是数组类型。如果可修改的左值所表示的对象是结构或联合类型，那么它的元素都不可以被声明（不管是直接地或间接地）为具有限定符 const 的类型
 
+## 18. 指针的高级应用
 
+### 动态内存分配
+
+主要用到3个函数，都定义在 <stdlib.h> 里面：
+
+- malloc：分配内存，不初始化
+- calloc：分配内存，初始化为0
+- realloc：调整内存大小
+- free: 释放内存
+
+当使用`malloc`函数给字符串分配内存空间时，长度应该是n + 1，给最后的空字符留出空间。
+
+### 链表
+
+**插入结点**
+
+```c
+struct node *add_to_list(struct node *list, int n)￼
+{￼
+  struct node *new_node;￼
+  new_node = malloc(sizeof(struct node));￼
+  if (new_node == NULL)  {￼
+    printf("Error: malloc failed in add_to_list\n");￼
+    exit(EXIT_FAILURE);￼
+  }￼
+  new_node->value = n;￼
+  new_node->next = 1ist;￼
+  return new_node;￼
+}
+```
+
+
+
+**搜索链表结点**
+
+到达链表末尾处时list为NULL，所以即使找不到n，返回list也是正确的
+
+```c
+struct node *search_list(struct node *list, int n) {
+	while(list != NULL && list->value != n) {
+    list = list->next;
+  }
+  return list;
+}
+```
+
+**删除链表结点**
+
+删除结点也包含3个步骤：
+
+1. 定位要删除的结点；
+2. 改变前一个结点，从而使它“绕过”删除结点；
+3. 调用free函数收回删除结点占用的内存空间。
+
+在第1步搜索链表时，将保留一个指向前一个结点的指针（prev），还有指向当前结点的指针（cur）。
+
+```c
+struct node *delete_from_list(struct node *list, int n)￼
+{￼
+  struct node *cur, *prev;￼
+  for (cur = list, prev = NULL;￼
+       cur != NULL && cur->value != n;￼
+       prev = cur,  cur = cur->next)￼
+    ;￼
+  if (cur == NULL)￼
+    return list;                /* n was not found */￼
+  if (prev == NULL)￼
+    list = list->next;          /* n is in the first node */￼
+  else￼
+    prev->next = cur->next;     /* n is in some other node */￼
+  free (cur);￼
+  return list;￼
+}
+```
+
+**指向指针的指针**
+
+以链表插入结点为例，如果不想要返回`new_node`，可以改成以下版本：
+
+```c
+void_add_to_list(struct node **list, int n)￼
+{￼
+   struct node *new_node;￼
+   new_node = malloc(sizeof(struct node));￼
+   if (new_node == NULL) {￼
+     printf("Error: malloc failed in add_to_list\n");￼
+     exit(EXIT_FAILURE);￼
+   }￼
+   new_node->value = n;￼
+   new_node->next = *list;￼
+   *list = new_node;￼
+}
+```
+
+当调用新版本的函数add_to_list时，第一个实际参数将会是first的地址：
+
+```c
+add_to_list(&first, 10);
+```
+
+既然给list赋予了first的地址，那么可以使用*list作为first的别名。特别是，把new_node赋值给*list将会修改first的内容。
+
+**指向函数的指针**
+
+通常声明函数指针是下面这样的格式：
+
+```c
+double integrate(double (*f)(double), double a, double b);
+```
+也可以直接用函数的声明形式:
+
+```c
+double integrate(double f(double), double a, double b);
+```
+
+调用`integrate`函数：
+```c
+result = integrate(sin, 0.0, PI / 2);
+```
+
+`integrate`函数体可以这样使用参数`f`:
+```c
+y = (*f)(x);
+```
+
+最经典的例子当属`stdlib.h`里面的`qsort`函数，声明如下：
+
+```c
+void	 qsort(void *__base, size_t __nel, size_t __width,
+	    int (* _Nonnull __compar)(const void *, const void *));
+```
