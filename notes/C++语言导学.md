@@ -5,4 +5,6 @@
 
 其他参考资料：
 
-- [cppreference](https://zh.cppreference.com/w/cpp/language)
+- [CPP Reference](https://zh.cppreference.com/w/cpp/language)
+- [CPP Reference 中文-国内镜像-20210212](https://qingcms.gitee.io/cppreference/20210212/zh/cpp/language.html)
+- [Learn C++](https://www.learncpp.com/)
